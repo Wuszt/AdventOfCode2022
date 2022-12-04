@@ -1,7 +1,4 @@
-file = open("input.txt", "r")
-counters = (0,0)
-for line in file:
-    ranges = [[int(y) for y in x.split('-')] for x in line.strip().split(',') ]
-    counters = (counters[0] + ((ranges[0][0] - ranges[1][0]) * (ranges[1][1] - ranges[0][1]) >= 0), counters[1])
-    counters = (counters[0], counters[1] + ((ranges[1][0] - ranges[0][1]) * (ranges[0][0] - ranges[1][1]) >= 0))
-print("Part1: " + str(counters[0]) + " | Part2: " + str(counters[1]))
+xs = [line.strip().split(',') for line in open("input.txt", "r")]
+rs = [[[int(y) for y in z.split('-')] for z in x] for x in xs]
+print(sum([(r[0][0]-r[1][0]) * (r[1][1]-r[0][1]) for r in rs]))
+print(sum([(r[1][0]-r[0][1]) * (r[0][0]-r[1][1]) for r in rs]))
