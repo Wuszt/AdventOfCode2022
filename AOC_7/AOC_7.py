@@ -1,13 +1,11 @@
 dirsSizes = []
-lines = open("input.txt")
+file = open("input.txt")
 
 def ParseDir():
     size = 0
-    file.readline()
     for line in file:
-        if line[0] == '$':
-            if line.split()[2] == "..":
-                break
+        if line[0:4] == '$ cd':
+            if line.split()[2] == "..": break
             size += ParseDir()
         fileSize = line.split()[0]
         if fileSize.isnumeric(): size += int(fileSize)
