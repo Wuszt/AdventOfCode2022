@@ -1,19 +1,13 @@
-dirsSizes = []
-file = open("input.txt")
-
-def ParseDir():
-    size = 0
+def ParseDir(sizes, file, size = 0):
     for line in file:
-        if line[0:4] == '$ cd':
+        if line[:4] == '$ cd':
             if line.split()[2] == "..": break
-            size += ParseDir()
+            size += ParseDir(sizes, file)[-1]
         fileSize = line.split()[0]
         if fileSize.isnumeric(): size += int(fileSize)
-    dirsSizes.append(size)
-    return size
+    sizes.append(size)
+    return sizes
 
-file.readline()
-ParseDir()
-print(sum([size for size in dirsSizes if size < 100000]))
-dirsSizes.sort()
-print(next(x for x in dirsSizes if x > dirsSizes[-1] - 40000000))
+sizes = sorted(ParseDir([], open("input.txt"))[:-1])
+print(sum([size for size in sizes if size < 100000]))
+print(next(x for x in sizes if x > sizes[-1] - 40000000))
