@@ -1,9 +1,8 @@
 dirs = { "L": [-1,0], "R": [1,0], "U": [0,1], "D": [0,-1] }
-cmds = [x.strip().split() for x in open("input.txt").readlines()]
 grid = set()
 KNOTS_AMOUNT = 9
 nodes = [[0,0] for _ in range(0,KNOTS_AMOUNT + 1)]
-for cmd in cmds:
+for cmd in [x.strip().split() for x in open("input.txt").readlines()]:
     for i in range(int(cmd[1])):
         nodes[0] = [nodes[0][0] + dirs[cmd[0]][0], nodes[0][1] + dirs[cmd[0]][1]]
         for i in range(1,len(nodes)):
