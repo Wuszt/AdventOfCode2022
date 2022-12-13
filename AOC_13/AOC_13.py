@@ -1,10 +1,6 @@
 from functools import cmp_to_key
-
 def IsArray(val): return hasattr(val, "__len__")
-def ConvertToArray(val):
-    if IsArray(val): return val
-    else: return [val]
-
+def ConvertToArray(val): return val if IsArray(val) else [val]
 def Check(left, right):
     if not (IsArray(left) or IsArray(right)): return right - left
     left, right = ConvertToArray(left), ConvertToArray(right)
