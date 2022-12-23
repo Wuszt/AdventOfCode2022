@@ -107,7 +107,6 @@ while True:
             sign = -sign
 
         i += sign * step
-        step = int(step * 1.5)
     else:
         step = max(1, int(step/2))
         sign = -sign
